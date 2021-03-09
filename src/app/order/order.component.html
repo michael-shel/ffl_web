@@ -1,0 +1,182 @@
+<div class="container pt-5 pb-5">
+    <div class="row pb-5">
+        <div class="col-7">
+            <p class="p-3 m-0 h3 font-weight-300">{{'Order arrangement' | translate}}</p>
+            <div class="bg-white container border rounded">
+                <div class="row p-3 border-bottom">
+                    <p class="m-0">
+                      {{'Phone' | translate }} +38{{user.phone}}
+                    </p>
+                </div>
+                <div>
+                  <div class="row p-3 border-bottom mt-2">
+                    <a class="d-block w-100" data-toggle="collapse" href="#collapseName" role="button" aria-expanded="false" aria-controls="collapseName">
+                      1. {{'Enter your data' | translate}}
+                    </a>
+                  </div>
+                  <div class="collapse show" id="collapseName">
+                    <div class="mt-2">
+                        <form [formGroup]="profileForm" class="personal-form mb-1">
+
+                                <div class="d-flex w-100 p-0">
+                                    <input formControlName="name" type="text" style="max-width: 100%;" class=" rounded form-control" placeholder="{{'Name' | translate}}" value="" required>
+                                </div>
+
+
+                                <div class="d-flex w-100 p-0">
+                                    <input formControlName="surname" type="text" style="max-width: 100%;" class="rounded form-control"  placeholder="{{'Surname' | translate}}" value="" required>
+                                </div>
+
+
+                                <div class="d-flex w-100 p-0">
+                                    <input formControlName="parent_name" type="text" style="max-width: 100%;" class=" rounded form-control"  placeholder="{{'Parent Name' | translate}}" value="" >
+                                </div>
+
+                        </form>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                    <div class="row p-3 border-bottom">
+                      <a class="d-block w-100" data-toggle="collapse" href="#collapseAddress" role="button" aria-expanded="false" aria-controls="collapseAddress">
+                        2. {{'Devilery address' | translate}}
+                      </a>
+                    </div>
+                    <div class="collapse show" id="collapseAddress">
+                      <div class="mt-2">
+                          <form [formGroup]="addressForm" class="personal-form mb-1">
+  
+                                  <div class="d-flex w-100 p-0">
+                                      <input  formControlName="street" type="text"  style="max-width: 100%;" class=" rounded form-control"  placeholder="{{'Street' | translate}}" value="" required>
+                                  </div>
+  
+                                  <div class="d-flex w-100 p-0">
+                                    <div class="d-flex w-100 pr-3">
+                                        <input  formControlName="house" type="text"  class="rounded form-control"  placeholder="{{'House number' | translate}}" value="" required>
+                                    </div>
+    
+                                    <div class="d-flex w-100 pr-3">
+                                        <input  formControlName="entrance" type="text"  class=" rounded form-control"  placeholder="{{'Entrance' | translate}}" value="" >
+                                    </div>
+
+                                    <div class="d-flex w-100 pr-3">
+                                        <input  formControlName="floor" type="text"  class=" rounded form-control"  placeholder="{{'Floor' | translate}}" value="" required>
+                                    </div>
+
+                                    <div class="d-flex w-100 p-0">
+                                        <input  formControlName="apartment" type="text"  class="rounded form-control"  placeholder="{{'Apartment' | translate}}" value="" required>
+                                    </div>
+                                  </div>
+
+                                
+
+
+                                <div class="d-flex w-100 p-0">
+                                    <input  formControlName="intercom_code" type="text"  class="col-6 rounded form-control"  placeholder="{{'Intercom code' | translate}}" value="" >
+                                </div>
+  
+                          </form>
+                      </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row p-3 border-bottom ">
+                      <a class="d-block w-100" data-toggle="collapse" href="#collapsDate" role="button" aria-expanded="false" aria-controls="collapsDate">
+                        3. {{'Devilery date and time' | translate }}
+                      </a>
+                    </div>
+                    <div class="collapse show" id="collapsDate">
+                      <div class="mt-2">
+                        <form [formGroup]="formTime" class="mb-1">
+                            <div>
+                               <input id="express" type="radio" formControlName="time" class=" " value="0"  required>
+                               <label class="pl-3 m-0" for="express">{{'Express delivery for 60 minutes in order day' | translate}}</label>
+                               <p class="m-0 text-danger"> * {{'Working schedule delivery company' | translate}} {{'From' | translate}} 8:00 {{'To' | translate}} 20:00</p>
+                            </div>
+                         
+                            <div>
+                               <input id="custom" type="radio" formControlName="time" class=" " value="1"  required>
+                               <label class="pl-3" for="custom">{{'Enter manual time and delivery date' | translate}}</label> 
+                               
+                            </div>
+                         </form>
+                         <div class="d-flex">
+                            <div class="col-6">
+                                <mat-form-field class="datePicker" appearance="fill">
+                                    <mat-label>{{'Date' | translate}}</mat-label>
+                                    <input matInput [matDatepicker]="dp">
+                                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                                    <mat-datepicker #dp></mat-datepicker>
+                                  </mat-form-field>
+                            </div>
+                            <div class="col-6">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>{{'Time' | translate}}</mat-label>
+                                    <mat-select>
+                                      <mat-option *ngFor="let time of times" [value]="time.value">
+                                        {{time.viewValue}}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                            </div>
+                            </div>
+                      </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row p-3 border-bottom ">
+                      <a class="d-block w-100" data-toggle="collapse" href="#collapsePay" role="button" aria-expanded="false" aria-controls="collapsePay">
+                        4. {{'Chose payment method' | translate}}
+                      </a>
+                    </div>
+                    <div class="collapse show" id="collapsePay">
+                      <div class="mt-2">
+                        <form [formGroup]="formPay" class="mb-1">
+                            <div>
+                               <input id="cash" type="radio" formControlName="pay" class=" " value="1"  required>
+                               <label class="pl-3 size20" for="cash">{{'Cash' | translate}}</label>
+                            </div>
+                         </form>
+                         
+                      </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center p-3 mb-2 mt-2">
+                    <button  (click)="createOrder()" class="btn btn-primary btn-lg col-8"  type="submit">{{'Order' | translate}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <p class="p-3 m-0 h3 font-weight-300">{{'Your order' | translate}}</p>
+            <div class="bg-white container border rounded">
+                
+                <div class=" pt-3 pb-3">
+                    <div class="p-3">
+                        <span>{{'Your store'}}: {{selectedStore.title}}{{selectedStore.address}}</span>
+                    </div>
+                    <div class="dropdown-cart-total m-0 font-weight-light">
+                        <span>{{'Order sum' | translate}}</span>
+                        <span class="cart-total-price">{{ productPrice | async }} {{'hrn' | translate}}</span>
+                    </div>
+                    <div class="dropdown-cart-total m-0 font-weight-light">
+                        <span>{{'Delivery' | translate}}</span>
+                        <span class="cart-total-price">{{ totalDelivery | async }} {{'hrn' | translate}}</span>
+                    </div>
+                    <div class="dropdown-cart-total m-0 font-weight-light">
+                        <span>{{'Weight' | translate}}</span>
+                        <span class="cart-total-price">{{ totalWeight | async }} {{'kg' | translate}}</span>
+                    </div>
+                    <div class="dropdown-cart-total">
+                        <span>{{'Total' | translate}}</span>
+                        <span class="cart-total-price">{{ totalPrice | async }} {{'hrn' | translate}} </span>
+                    </div>
+        
+                    <div class="p-3">
+                        <button type="button" routerLink="/cart" class="btn btn-primary text-uppercase w-100 ">{{'Back to cart' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

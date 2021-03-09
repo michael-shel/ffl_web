@@ -1,0 +1,6 @@
+/* .border-catalog{
+    border: 1px solid #f7d007;
+} */
+.category_header li a:hover{
+    background-color: #fafafa;
+}

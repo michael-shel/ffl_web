@@ -1,0 +1,101 @@
+/* .menu > li:hover > a > fa-icon, .menu > li.show > a > fa-icon, .menu > li.active > a > fa-icon {
+    border-color: #19af30 !important;
+    color: #19af30 !important;
+} */
+
+.menu li a {
+    font-weight: 400;
+}
+
+fa-icon:hover{
+    color: #4c309c !important ;
+}
+a:hover fa-icon{
+    color: #4c309c !important;
+}
+.hover_button:hover a{
+    color: black !important;
+}
+.hover_button:hover {
+    background: #f7d007;
+}
+.hover_button:hover .hover_icon{
+    color: black !important;
+}
+.cart-dropdown:hover .hover_button{
+    background: #f7d007;
+    color: black;
+}
+.cart-dropdown:hover .hover_button .hover_span{
+    color: black;
+}
+.cart-dropdown:hover .icon-basket{
+    filter: invert(100%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+.cart-dropdown:hover .cart-badge{
+    background: #4c309c ;
+    color: white;
+}
+.cart_icon:hover{
+    transform: scale(1.1);
+    transition: 200ms;
+}
+.cart-dropdown:hover .cart_icon{
+    transform: scale(1.1);
+    transition: 200ms;
+}
+.cart-dropdown:hover .hover_button{
+    background-color: #f7d007;
+    border-color: #f7d007;
+    color: black !important;
+}
+.search_input_header{
+    background-color: #644da6;
+    border: 1px solid #644da6;
+    border-bottom: none;
+}
+.search_input_header:focus{
+    background-color: white;
+    border-radius:0 !important ;
+    transition: 150ms;
+    color: black !important;
+}
+.search-item:hover{
+    background-color: white;
+    color: #4c309c;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+.icon{
+    display: inline-block;
+    background-size: cover;
+}
+.icon-basket{
+    background-image: url('../../assets/html/assets/images/img/icon_basket.svg');
+    height: 100%;
+    width: 25px;
+    background-size: contain;
+    margin-top: -3px;
+    background-repeat: no-repeat;
+}
+.hover_button:hover .icon-basket {
+  filter: invert(100%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+.hover_button:hover .cart-badge{
+    background: #4c309c ;
+    color: white;
+}
+.cart-badge{
+    position: absolute;
+    top: 0px;
+    left: 30px;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f7d007;
+    line-height: 1.7;
+    z-index: 8;
+    font-size: 14px;
+    color: black;
+    font-family: RussoOne;
+}

@@ -1,0 +1,60 @@
+<form [formGroup]="addressForm" class="personal-form pt-3">
+<div class="modal-header border-none ">
+    <label class="col-3" for="validationDefault00">{{'Address title' | translate}} *</label>
+    <input formControlName="title" type="text" class="col-6 rounded form-control" id="validationDefault00" placeholder="{{'Address title' | translate}}" value="" required>
+    <button type="button" class="close outline-none" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="pt-5 pb-5 ">
+    <div class="form-row align-items-center justify-content-center">
+        <label class="col-3" for="validationDefault01">{{'Street' | translate}} *</label>
+        <input formControlName="street" type="text" class="col-6 rounded form-control" id="validationDefault01" placeholder="{{'Street' | translate}}" value="" required>
+    </div>
+    <div class="form-row align-items-center justify-content-center">
+        <label class="col-3" for="validationDefault02">{{'House number' | translate}} *</label>
+        <div class="col-6 d-flex p-0">
+            <input formControlName="house" type="text" class="col-4 rounded form-control" id="validationDefault02" placeholder="{{'House number' | translate}}" value="" required>
+        </div>
+        
+    </div>
+    <div class="form-row align-items-center justify-content-center">
+        <label class="col-3" for="validationDefault03">{{'Entrance' | translate}}</label>
+        <div class="col-6 d-flex p-0">
+            <input formControlName="entrance" type="text" class="col-4 rounded form-control" id="validationDefault03" placeholder="{{'Entrance' | translate}}" value="" >
+        </div>
+    </div>
+    <div class="form-row align-items-center justify-content-center">
+        <label class="col-3" for="validationDefault04">{{'Floor' | translate}}</label>
+        <div class="col-6 d-flex p-0">
+        <input formControlName="floor" type="text" class="col-4 rounded form-control" id="validationDefault04" placeholder="{{'Floor' | translate}}" value="" >
+        </div>
+    </div>
+    <div class="form-row align-items-center justify-content-center">
+        <label class="col-3" for="validationDefault05">{{'Apartment' | translate}}</label>
+        <div class="col-6 d-flex p-0">
+        <input formControlName="apartment" type="text" class="col-4 rounded form-control" id="validationDefault05" placeholder="{{'Apartment' | translate}}" value="" >
+        </div>
+    </div>
+    <div class="form-row align-items-center justify-content-center">
+        <label class="col-3" for="validationDefault06">{{'Intercom code' | translate}}</label>
+        <div class="col-6 d-flex p-0">
+        <input formControlName="intercom_code" type="text" class="col-4 rounded form-control" id="validationDefault06" placeholder="{{'Intercom code' | translate}}" value="" >
+        </div>
+    </div>
+    <div class="form-row align-items-center justify-content-center">
+      <div class="col-3 pl-4">
+        <input formControlName="main_address" type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label pl-3 noselect text-nowrap" for="exampleCheck1">{{'Main delivery address' | translate}}</label>
+      </div>
+      <div class="col-6">
+      </div>
+    </div>
+
+    <div class="form-row align-items-center justify-content-center mt-1">
+        <div class="form-row align-items-center justify-content-center mt-1">
+            <button (click)="addAddress()" class="btn btn-primary text-uppercase" type="submit">{{'Add address' | translate}}</button>
+        </div>
+    </div>   
+</div>
+</form>

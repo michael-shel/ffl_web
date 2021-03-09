@@ -1,0 +1,84 @@
+.more:hover{
+    text-decoration: underline;
+}
+.overflow-hidden{
+    overflow: hidden;
+}
+.bg-green{
+    background-color: #19af30 !important;
+}
+.text-green{
+    color: #19af30 !important;
+}
+.divider:hover fa-icon{
+    color: #19af30 !important;
+    transition: 150ms;
+}
+.trash:hover fa-icon{
+    color: tomato;
+}
+.trash-bin:hover fa-icon{
+    color: red;
+}
+.pointer{
+    cursor: pointer;
+}
+.toCart:hover{
+    background: #19af30 !important ;
+    color: white;
+    transition: 300ms ease-in-out;
+}
+.sale{
+    width: 100px;
+    position: absolute;
+    background: #ff3d3d;
+}
+.sale2{
+    width: 70px;
+    left: -30px;
+    top: -10px;
+    position: absolute;
+    background: #ff3d3d;
+}
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+  }
+.galeryImg:hover{
+    border: 1px solid #4c309c;
+    transition: 50ms;
+}
+.galeryActive{
+    border: 1px solid #4c309c;
+    transition: 50ms;
+}
+.border-green{
+    border: 1px solid #19af30;
+}
+.owl-carousel .owl-item {
+    background: transparent !important;
+}
+p,span{
+-webkit-touch-callout: none; /* iOS Safari */
+-webkit-user-select: none; /* Safari */
+ -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                              supported by Chrome, Edge, Opera and Firefox */
+}
+.recomendations{
+    position: sticky;
+    top: 80px;
+    overflow: hidden;
+}
+.open-sans{
+    font-family: "Open Sans", sans-serif;
+}
+.bg-gray{
+    background: #f3f3f3;
+}

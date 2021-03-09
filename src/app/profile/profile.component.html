@@ -1,0 +1,48 @@
+<div style="min-height: 70vh;" class="container pt-5 pb-5">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class=" border rounded" *ngIf="lang == 'ua' || !lang">
+                <div *ngFor="let tab of tabs" class="p-2 rounded tab-link"> 
+                    <button (click)="activateTab(tab)" *ngIf="!tab.active" mat-button color="primary" class="text-dark w-100 text-left outline-none text-uppercase">{{tab.title}}</button>
+                    <button *ngIf="tab.active" mat-raised-button color="primary" class="text-white w-100 text-left outline-none text-uppercase">{{tab.title}}</button>
+                </div>
+                <div class="p-2 rounded tab-link"> 
+                    <button (click)="logout()"  mat-button color="primary" class="text-dark w-100 text-left outline-none text-uppercase">{{'Logout' | translate}}</button>
+                    <!-- <button (click)="logout()" mat-raised-button color="primary" class="text-white w-100 text-left outline-none text-uppercase">Вийти з кабінету</button> -->
+                </div>
+            </div>
+            <div class=" border rounded" *ngIf="lang == 'ru'">
+                <div *ngFor="let tab of tabs" class="p-2 rounded tab-link"> 
+                    <button (click)="activateTab(tab)" *ngIf="!tab.active" mat-button color="primary" class="text-dark w-100 text-left outline-none text-uppercase">{{tab.title_ru}}</button>
+                    <button *ngIf="tab.active" mat-raised-button color="primary" class="text-white w-100 text-left outline-none text-uppercase">{{tab.title_ru}}</button>
+                </div>
+                <div class="p-2 rounded tab-link"> 
+                    <button (click)="logout()"  mat-button color="primary" class="text-dark w-100 text-left outline-none text-uppercase">{{'Logout' | translate}}</button>
+                    <!-- <button (click)="logout()" mat-raised-button color="primary" class="text-white w-100 text-left outline-none text-uppercase">Вийти з кабінету</button> -->
+                </div>
+            </div>
+            <div class=" border rounded" *ngIf="lang == 'en'">
+                <div *ngFor="let tab of tabs" class="p-2 rounded tab-link"> 
+                    <button (click)="activateTab(tab)" *ngIf="!tab.active" mat-button color="primary" class="text-dark w-100 text-left outline-none text-uppercase">{{tab.title_eng}}</button>
+                    <button *ngIf="tab.active" mat-raised-button color="primary" class="text-white w-100 text-left outline-none text-uppercase">{{tab.title_eng}}</button>
+                </div>
+                <div class="p-2 rounded tab-link"> 
+                    <button (click)="logout()"  mat-button color="primary" class="text-dark w-100 text-left outline-none text-uppercase">{{'Logout' | translate}}</button>
+                    <!-- <button (click)="logout()" mat-raised-button color="primary" class="text-white w-100 text-left outline-none text-uppercase">Вийти з кабінету</button> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 p-3" >
+            <div *ngIf="tabs[0].active" >
+                <app-profile-tab-settings></app-profile-tab-settings>
+            </div>
+            <div *ngIf="tabs[1].active" >
+                <app-profile-tab-orders></app-profile-tab-orders>
+            </div>
+            <div *ngIf="tabs[2].active" >
+                <app-profile-tab-address></app-profile-tab-address>
+            </div>
+            
+        </div>
+    </div>
+</div>

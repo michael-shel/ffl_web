@@ -1,0 +1,62 @@
+<nav class="main-nav w-auto">
+    <ul class="menu sf-arrows">
+        <li class="" *ngIf="selectedStore">
+            <a (click)="mainCategory()" class="sf-with-ul font-russo-one font-weight-100 size22  border-catalog bg-yellow pointer" style="padding: 0 45px 0px 45px; border-left: none;">
+                    {{'Categories' | translate }}
+            </a>
+            <ul class="category_header" *ngIf="lang == 'en'">
+                <ng-template #recursiveList let-categories>
+                    <li *ngFor="let item of categories">
+                        <a *ngIf="item.children.length > 0" (click)="goToCategory(item.data.id)"  class="sf-with-ul pointer" >
+                            <!-- <img *ngIf="item.perent_category_id == null || item.icon.id" src="{{domain}}/storage/{{item.icon.id}}/{{item.icon.file_name}}"> -->
+                            {{item.data.title_eng}}</a>
+                        <a *ngIf="item.children.length < 1" (click)="goToCategory(item.data.id)" class="pointer">{{item.data.title_eng}}</a>
+                    
+                        <ul *ngIf="item.children.length > 0"  style="display: none;">
+                            <ng-container *ngTemplateOutlet="recursiveList ; context:{ $implicit: item.children }"></ng-container>
+                        </ul>
+                    </li>
+                </ng-template>
+                <ng-container *ngTemplateOutlet="recursiveList ; context:{ $implicit: categories }"></ng-container>
+
+            </ul>
+            <ul class="category_header" *ngIf="lang == 'ru'">
+                <ng-template #recursiveList let-categories>
+                    <li *ngFor="let item of categories">
+                        <a *ngIf="item.children.length > 0" (click)="goToCategory(item.data.id)"  class="sf-with-ul pointer" >
+                            <!-- <img *ngIf="item.perent_category_id == null || item.icon.id" src="{{domain}}/storage/{{item.icon.id}}/{{item.icon.file_name}}"> -->
+                            {{item.data.title_ru}}</a>
+                        <a *ngIf="item.children.length < 1" (click)="goToCategory(item.data.id)" class="pointer">{{item.data.title_ru}}</a>
+                    
+                        <ul *ngIf="item.children.length > 0"  style="display: none;">
+                            <ng-container *ngTemplateOutlet="recursiveList ; context:{ $implicit: item.children }"></ng-container>
+                        </ul>
+                    </li>
+                </ng-template>
+                <ng-container *ngTemplateOutlet="recursiveList ; context:{ $implicit: categories }"></ng-container>
+
+            </ul>
+            <ul class="category_header" *ngIf="lang == 'ua' || !lang" >
+                <ng-template #recursiveList let-categories>
+                    <li *ngFor="let item of categories">
+                        <a *ngIf="item.children.length > 0" (click)="goToCategory(item.data.id)"  class="sf-with-ul pointer" >
+                            <!-- <img *ngIf="item.perent_category_id == null || item.icon.id" src="{{domain}}/storage/{{item.icon.id}}/{{item.icon.file_name}}"> -->
+                            {{item.data.title_ua}}</a>
+                        <a *ngIf="item.children.length < 1" (click)="goToCategory(item.data.id)" class="pointer">{{item.data.title_ua}}</a>
+                    
+                        <ul *ngIf="item.children.length > 0"  style="display: none;">
+                            <ng-container *ngTemplateOutlet="recursiveList ; context:{ $implicit: item.children }"></ng-container>
+                        </ul>
+                    </li>
+                </ng-template>
+                <ng-container *ngTemplateOutlet="recursiveList ; context:{ $implicit: categories }"></ng-container>
+
+            </ul>
+        </li>
+        <li class="" *ngIf="!selectedStore">
+            <a routerLink="/" class="sf-with-ul font-russo-one font-weight-100 size22  border-catalog bg-yellow " style="padding: 0 45px 0px 45px; border-left: none;">
+                {{'Categories' | translate }}
+            </a>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,43 @@
+
+    <div class="modal-header border-none ">
+        <label class="col m-0 font-weight-500 size20" >{{'Replace product' | translate}}</label>
+        <button type="button" class="close outline-none" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+        <div class="modal-body" style="min-height: 400px;">
+            <div class="similar-product row align-items-center pt-2 pb-2" *ngFor="let product of products">
+                <div class="col-auto pointer pr-0" >
+                    <a  (click)="goToProduct(product)" target="_blank" class="d-none d-sm-none d-md-block" style="background-image: url({{url}}{{product.product.media[0].url}});height:86px; width:86px; background-repeat: no-repeat !important;background-size: contain;background-position: center;"></a>    
+                </div>
+                <div class="col pointer" > 
+                    <a (click)="goToProduct(product)" target="_blank" class="m-0 font-weight-300 h4">{{product.product.title}}</a>
+                </div>
+                <!-- <div class="col p-0"> 
+                    <div class="row align-items-center pl-4 pr-4 pt-2 pb-1 text-center" >
+                        <div *ngIf="product.amount < 1" class="col trash-bin pointer p-0" (click)="decreaseCartItem(product)"><fa-icon [icon]="faTrash" class="h3 font-weight-light"></fa-icon></div>
+                        <div *ngIf="product.amount >= 1" class="col  trash pointer p-0" (click)="decreaseCartItem(product)"><fa-icon [icon]="faMinusCircle" class="h3 font-weight-light"></fa-icon></div>
+                        <div class="col counter h3 m-0 font-weight-400 p-0"><span class="noselect">{{product.amount}}</span></div>
+                        <div class="col divider pointer p-0" (click)="increaseCartItem(product)"><fa-icon [icon]="faPlusCircle" class="h3 font-weight-light"></fa-icon></div>
+                    </div>
+                </div> -->
+                <div *ngIf="product.special_price < product.price" class="col-auto p-0 "> 
+                    <div  class="p-3 row text-right h3 m-0 font-weight-300 noselect justify-content-center">
+                        {{ product.special_price }} {{'hrn' | translate}}/{{product.weight}}{{product.weight_type}}
+                    </div>
+                    <div  class="p-3 row text-right h3 m-0 font-weight-300 noselect justify-content-center">
+                        <u> {{ product.price }} {{'hrn' | translate}}/{{product.weight}}{{product.weight_type}} </u>
+                    </div>
+                </div>
+                <div *ngIf="product.special_price == product.price || product.special_price > product.price " class="col-auto p-0 "> 
+                    <div  class="p-3 row text-right h3 m-0 font-weight-300 noselect justify-content-center">
+                         {{ product.price }} {{'hrn' | translate}}/{{product.weight}}{{product.weight_type}}
+                    </div>
+                </div>
+                <div class="col-auto p-0 pl-3 text-right"> 
+                    <div class="col trash-bin pointer" (click)="replace(product)">  <a class="btn btn-sm btn-primary"> {{'To cart' | translate}} </a></div>
+                </div>
+        </div>
+        </div>
+
+    

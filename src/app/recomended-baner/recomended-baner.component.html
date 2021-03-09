@@ -1,0 +1,68 @@
+
+    <div class="d-flex align-items-center justify-content-between p-3 bg-gray rounded">
+        <p class="max-w-80 h4 font-weight-600 noselect m-0 text-uppercase open-sans">{{'Recomended products' | translate}}</p>
+        <div>
+            <span class="pr-1 divider pointer" (click)="productOwl2.prev()" ><fa-icon [icon]="faChevronLeft" class="h4 font-weight-300"></fa-icon> </span> 
+            <span class="pl-1 divider pointer" (click)="productOwl2.next()"><fa-icon [icon]="faChevronRight" class="h4 font-weight-300"></fa-icon> </span>
+        </div>
+    </div>
+
+    <owl-carousel-o [options]="customOptions2" #productOwl2 >
+        <ng-container *ngFor="let slide of products_slider">
+    <ng-template carouselSlide *ngIf="slide.length != 0">
+
+
+                <div class="slide" >
+                    <div class="product-default text-center left-details product-widget flex-column align-items-center" *ngFor="let product of slide">
+                        <figure class="m-0 pointer" (click)="goToProduct(product)">
+                        <div class="sale2" *ngIf="product.sale"> 
+                        <p class="p-2 h4 m-0 text-white text-center">- {{product.sale}} %</p> 
+                        </div>
+                        <a (click)="goToProduct(product)" class="d-block" style="background-image: url({{url}}{{product.product.icons[0].url}});height:84px;width:84px; background-repeat: no-repeat !important;background-size: contain;background-position: center;"></a>
+                        </figure>
+                        <div class=" align-items-stretch w-100" >
+                        <h2 class="product-title pointer" (click)="goToProduct(product)">
+                            <a *ngIf="(lang == 'ua' || !lang) && (product.weight_type == 1)" class="text-wrap product_selector" >{{product.product.title_ua}} <span *ngIf="product.weight">{{product.weight}}</span><span>кг</span> </a>
+                            <a *ngIf="(lang == 'ua' || !lang) && (product.weight_type == 0)" class="text-wrap product_selector" >{{product.product.title_ua}} <span *ngIf="product.weight">{{product.gram_weight}}</span><span>г</span> </a>
+
+                            <a *ngIf="(lang == 'ru') && (product.weight_type == 1)" class="text-wrap product_selector" >{{product.product.title_ru}} <span *ngIf="product.weight">{{product.weight}}</span><span>кг</span> </a>
+                            <a *ngIf="(lang == 'ru') && (product.weight_type == 0)" class="text-wrap product_selector" >{{product.product.title_ru}} <span *ngIf="product.weight">{{product.gram_weight}}</span><span>г</span> </a>
+
+                            <a *ngIf="(lang == 'en') && (product.weight_type == 1)" class="text-wrap product_selector" >{{product.product.title_eng}} <span *ngIf="product.weight">{{product.weight}}</span><span>kg</span> </a>
+                            <a *ngIf="(lang == 'en') && (product.weight_type == 0)" class="text-wrap product_selector" >{{product.product.title_eng}} <span *ngIf="product.weight">{{product.gram_weight}}</span><span>g</span> </a>
+                            
+                            <!-- <a class="text-wrap product_selector" >{{product.product.title}} <span *ngIf="product.weight">{{product.weight}}</span><span *ngIf="product.weight_type">{{product.weight_type}}</span> </a> -->
+                        </h2>
+                        <div class="price-box">
+                            <div *ngIf="product.special_price != 0 && product.sale"> 
+                            <span class="product-price font-weight-600" >{{product.special_price}} {{'hrn' | translate}} </span>
+                            <span class="product-price font-weight-300 pl-3" > <small> <s> {{product.price}} {{'hrn' | translate}} </s> </small></span>
+                        </div>
+                        <div *ngIf="!product.sale"> 
+                            <span class="product-price font-weight-600" >{{product.price}} {{'hrn' | translate}} </span>
+                        </div>
+                        </div>
+                        <div [@togglePriceBox]="product.isOpen ? 'hidden' : 'visible'" class="row align-items-center justify-content-center pt-2 pb-1" *ngIf="product.count != 0">
+                        <div *ngIf="product.count == 1" class="col-auto trash-bin pointer" (click)="decreaseProduct(product)"><fa-icon [icon]="faTrash" class="h2 font-weight-light"></fa-icon></div>
+                        <div *ngIf="product.count > 1" class="col-auto  trash pointer" (click)="decreaseProduct(product)"><fa-icon [icon]="faMinusCircle" class="h2 font-weight-light"></fa-icon></div>
+                        <div class="col-auto counter h3 m-0 font-weight-400 "><span class="noselect">{{product.count}}</span></div>
+                        <div class="col-auto divider pointer" (click)="addToCart(product)"><fa-icon [icon]="faPlusCircle" class="h2 font-weight-light"></fa-icon></div>
+                        </div>
+                        <div [@togglePriceBox]="product.isOpen ? 'visible' : 'hidden'" class="row align-items-center" *ngIf="product.count == 0" style="height: 37.5px;">
+                        <div class="col text-center text-dark outline-none ">
+                            <button mat-button class="bg-light text-uppercase toCart rounded-0" (click)="addToCart(product)">{{'To cart' | translate}}</button>
+                        </div>
+                        </div>
+                        
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+
+    </ng-template>
+        </ng-container>
+    </owl-carousel-o>
+
+

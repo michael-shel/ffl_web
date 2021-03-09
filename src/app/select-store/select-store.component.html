@@ -1,0 +1,68 @@
+
+
+
+  <div class="col text-center border rounded p-0 bg-custom-gray">
+    <div class="modal-header border-none ">
+        <p class="size18 m-0 font-weight-500 p-3"> {{'Select store and address' | translate}} </p>
+        <button type="button" class="close outline-none" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="d-flex w-100 p-0">
+                    <input [(ngModel)]="address" type="text" style="max-width: 100%;" [class.text-black]="address" class="border-custom-gray form-control text-center address-input" placeholder="{{'Street and house' | translate}}" value="" required>
+                </div>
+            </div>
+        </div>
+        <div class="row pl-5 pr-5">
+            <div class="col-4 justify-content-center align-items-center d-flex" *ngFor="let brand of brands" >
+                <div class="w-100 pointer" (click)="selectBrand(brand)">
+                    <img class="brand-img" [class.gray]="brand.id != selectedBrand.id" src="{{url}}/storage/{{brand.icon.id}}/{{brand.icon.file_name}}">
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col">
+                <div class="form-group">
+                    <label for="select_modal" class="select_modal border-custom-gray bg-white">
+                        <input type="radio" name="list" value="not_changed" id="bg" checked />
+                        <input type="radio" name="list" value="not_changed" id="select_modal">
+                        <label class="bg" for="bg"></label>
+                        <div class="items">
+                            <ng-container *ngIf="selectedStore">
+                                <ng-container  *ngFor="let store of stores">
+                                    <input [(ngModel)]="selectedStore" type="radio" name="listModal" [value]="store" id="listModal[{{store.id}}]">
+                                    <label for="listModal[{{store.id}}]" class="text-center w-100" [class.text-primary]="store.id == selectedStore.id" >{{store.title}} {{store.address}}</label>
+                                </ng-container>
+                            </ng-container>
+                            
+                            <ng-container *ngIf="!selectedStore">
+                                <ng-container  *ngFor="let store of stores">
+                                    <input [(ngModel)]="selectedStore" type="radio" name="list" [value]="store" id="list[{{store.id}}]">
+                                    <label for="list[{{store.id}}]" class="text-center w-100" >{{store.title}} {{store.address}}</label>
+                                </ng-container>
+                            </ng-container>
+                            <ng-container *ngIf="stores.length == 0">
+                                <input  type="radio" name="list" id="noneStore">
+                                <label for="noneStore" class="text-center w-100" >{{'Stores not found' | translate}}</label>
+                            </ng-container>
+                          <span id="textModal" *ngIf="selectedStore" class="text-center size16 font-weight-500 text-black"> {{selectedStore.title}} </span>
+                          <span id="textModal" *ngIf="selectedBrand && !selectedStore" class="text-center"> {{'Closest store' | translate}} {{selectedBrand.title}} </span>
+                          <span id="textModal" *ngIf="!selectedBrand && !selectedStore" class="text-center"> {{'Choose store brand' | translate}}  </span>
+                        
+                        </div>
+                    </label>
+                    
+                </div>
+
+            </div>
+        </div>
+        <div class="row pb-3 justify-content-center mt-1 mb-3">
+            <div (click)="selectStore()" class="hover_button pointer col-6 border-catalog bg-yellow p-3 border-yellow">
+                <a  class="select-store-button text-uppercase font-russo-one font-weight-100 size22" > {{'To shopping' | translate}} </a>
+            </div>
+        </div>
+    </div>
+</div>

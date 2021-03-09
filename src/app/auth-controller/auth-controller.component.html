@@ -1,0 +1,42 @@
+
+    <div class="modal-header text-center">
+      <h4 class="modal-title w-100 font-weight-500 size20">{{'Authorization' | translate}}</h4>
+      <button type="button" class="close m-0 position-absolute outline-none" style="right: 15px;" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+          <div class="row"> <p class="font-weight-500"> {{'Enter phone number' | translate}} </p></div>
+          <div class="input-group mb-1">
+            <!-- <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"></span>
+            </div> -->
+            <input [(ngModel)]="phone" [disabled]="timer_active" [class.border-primary]="!phone_valid" (focus)="PhoneFocus()" style="letter-spacing: 5px;" type="text" prefix="+38 " mask="(000) 000 00 00" class="size16 form-control" [showMaskTyped]="true"  aria-label="phone" aria-describedby="basic-addon1">
+            <div class="pl-5">
+              <button class="hover_button text-uppercase font-russo-one btn border bg-white sms_btn outline-none" [disabled]="timer_active" (click)="sendSms()" [class.shake]="bad_logic">{{'Next' | translate}}</button>
+            </div>
+          </div>
+          <div class="form-check w-100 text-center mb-3" [class.shake]="!rules_agree">
+            <input type="checkbox" checked [disabled]="timer_active" (click)="toggleRules()" class="form-check-input" id="Check1" style="margin-top: 4px;">
+            <label class="form-check-label pl-3" for="Check1"> <a target="_blank" routerLink="page/5" class="hover_button"> <u> {{'I agree with site rules' | translate}}</u></a></label>
+          </div>
+          <div class="sms_repeat" [class.d-none]="!timer_active" style="position: absolute;
+          text-align: center;
+          width: 100%;
+          left: 0;
+          color: #644da6;
+          margin: -25px 0;"> {{'Resend code' | translate}} <span class="font-russo-one">{{timer}}</span> </div>
+          <div class="row"> <p class="font-weight-500">  {{'Enter authorization code' | translate}} </p></div>
+          <div class="input-group mb-3 justify-content-evenly">
+           
+            <input [class.shake]="invalid_code" [class.border-primary]="!code_valid || bad_code" (focus)="CodeFocus()" [(ngModel)]="code_1" mask="0"  id="code_1" (input)="onInputEntry('code_2')" style="max-width: 60px;" type="text" class="text-center size20 font-weight-100 font-russo-one form-control tab" placeholder="" aria-label="" aria-describedby="basic-addon2">
+            <input [class.shake]="invalid_code" [class.border-primary]="!code_valid || bad_code" [(ngModel)]="code_2" mask="0" (keydown.backspace)="previousInput(2)" (focus)="focusFirst(2)" id="code_2" (input)="onInputEntry('code_3')" style="max-width: 60px;" type="text" class="text-center size20 font-weight-100 font-russo-one form-control tab" placeholder="" aria-label="" aria-describedby="basic-addon2">
+            <input [class.shake]="invalid_code" [class.border-primary]="!code_valid || bad_code" [(ngModel)]="code_3" mask="0" (keydown.backspace)="previousInput(3)" (focus)="focusFirst(3)" id="code_3" (input)="onInputEntry('code_4')" style="max-width: 60px;" type="text" class="text-center size20 font-weight-100 font-russo-one form-control tab" placeholder="" aria-label="" aria-describedby="basic-addon2">
+            <input [class.shake]="invalid_code" [class.border-primary]="!code_valid || bad_code" [(ngModel)]="code_4" mask="0" (keydown.backspace)="previousInput(4)" (focus)="focusFirst(4)" id="code_4" style="max-width: 60px;" type="text" class="text-center size20 font-weight-100 font-russo-one form-control tab" placeholder="" aria-label="" aria-describedby="basic-addon2">
+          </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+      <button type="button" class="btn hover_button pointer bg-yellow border-yellow font-russo-one text-uppercase outline-none" (click)="auth()">{{'Enter' | translate}}</button>
+    </div>
+
+  

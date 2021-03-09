@@ -1,0 +1,44 @@
+.bg-green{
+    background-color: #19af30 !important;
+}
+.text-green{
+    background-color: #19af30 !important;
+}
+.divider:hover fa-icon{
+    color: #19af30 !important;
+}
+.trash:hover fa-icon{
+    color: tomato;
+}
+.trash-bin:hover fa-icon{
+    color: red;
+}
+.pointer{
+    cursor: pointer;
+}
+.toCart:hover{
+    background: #19af30 !important ;
+    color: white;
+    transition: 300ms ease-in-out;
+}
+.sale{
+    width: 100px;
+    position: absolute;
+    background: #ff3d3d;
+}
+.sale2{
+    width: 70px;
+    left: -30px;
+    top: -10px;
+    position: absolute;
+    background: #ff3d3d;
+}
+.similar div:last-child {
+    border: none !important;
+  }
+
+.mat-button[disabled], .mat-icon-button[disabled], .mat-stroked-button[disabled], .mat-flat-button[disabled] {
+    cursor: not-allowed;
+    background-color: gray !important;
+    transition: 100ms;
+}

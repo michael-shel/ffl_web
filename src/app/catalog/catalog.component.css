@@ -1,0 +1,59 @@
+.bg-green{
+    background-color: #19af30 !important;
+}
+.divider:hover fa-icon{
+    color: #19af30 !important;
+}
+.trash:hover fa-icon{
+    color: tomato;
+}
+.trash-bin:hover fa-icon{
+    color: red;
+}
+.pointer{
+    cursor: pointer;
+}
+.toCart:hover{
+    background: #f7d007 !important ;
+    /* color: white; */
+    transition: 300ms ease-in-out;
+}
+.sale{
+    min-width: 70px;
+    left: -15px;
+    position: absolute;
+    background: #ff3d3d;
+}
+.sale2{
+    width: 70px;
+    left: -30px;
+    top: -10px;
+    position: absolute;
+    background: #ff3d3d;
+}
+.form-control:focus {
+    border-color: #19af30;
+    background-color: #fff;
+    color: #7a7d82;
+    box-shadow: none;
+    transition: 100ms;
+}
+.text-green{
+    color: #19af30 !important;
+}
+.recomendations{
+    position: sticky;
+    top: 80px;
+    overflow: hidden;
+}
+.open-sans{
+    font-family: "Open Sans", sans-serif;
+}
+.bg-gray{
+    background: #f3f3f3;
+}
+.select_shadow:hover .product_selector{
+     /* box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important; */
+     text-decoration: underline ;
+}
+

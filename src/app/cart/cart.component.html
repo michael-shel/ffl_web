@@ -1,0 +1,188 @@
+<div class="container pt-5 pb-5">
+    <div class="row pb-5">
+        <div class="col-7">
+            <p class="p-3 m-0 h3 font-weight-300" *ngIf="lang == 'ua'" >{{'Your store' | translate}}: {{selectedStore.value.title_ua}} {{selectedStore.value.address}}</p>
+            <p class="p-3 m-0 h3 font-weight-300" *ngIf="lang == 'ru'" >{{'Your store' | translate}}: {{selectedStore.value.title_ru}} {{selectedStore.value.address}}</p>
+            <p class="p-3 m-0 h3 font-weight-300" *ngIf="lang == 'en'" >{{'Your store' | translate}}: {{selectedStore.value.title_eng}} {{selectedStore.value.address}}</p>
+            <div class="bg-white container border rounded">
+                <div class="row align-items-center border-bottom">
+                    <div class="col"> <p class="h2 m-0 font-weight-300"> {{'Cart' | translate}} </p></div>
+                    <div class="col text-right"> <button mat-button (click)="clearCart()" color="warn" class="outline-none"> {{'Clear cart' | translate}} </button></div>
+                </div>
+                <div class="text-center p-3" *ngIf="cart.length == 0"><p class="text-primary font-weight-300 size-14 text-uppercase"> {{'Cart empty' | translate}} </p>
+                    <a routerLink="/catalog/0" class="btn btn-sm btn-primary  text-uppercase size-12"> {{'To shopping' | translate}} !</a></div>
+                <div class="row align-items-center pt-2 pb-2" *ngFor="let product of cart">
+                        <div class="col-auto pointer pr-0" (click)="goToProduct(product)">
+                            <a  class="d-none d-sm-none d-md-block" style="background-image: url({{url}}{{product.product.icons[0].url}});height:86px; width:86px; background-repeat: no-repeat !important;background-size: contain;background-position: center;"></a>    
+                        </div>
+                        
+                        <div class="col pointer" (click)="goToProduct(product)" *ngIf="(lang == 'ua' || !lang) && (product.weight_type == 1)"> 
+                            <div class="m-0 font-weight-300 h4">{{product.product.title_ua}}</div>
+                            <ng-containe *ngIf="product.qty != 0">
+                            <div *ngIf="product.special_price == 0" class="font-weight-500 p-1 text-right">{{product.price}} {{'hrn' | translate}}/{{product.weight}}кг </div>
+                            <div *ngIf="product.special_price != 0"class="font-weight-500 p-1 text-right">{{product.special_price}} {{'hrn' | translate}}/{{product.weight}}кг </div>
+                            </ng-containe>
+                        </div>
+                        <div class="col pointer" (click)="goToProduct(product)" *ngIf="(lang == 'ua' || !lang) && (product.weight_type == 0)"> 
+                            <div class="m-0 font-weight-300 h4">{{product.product.title_ua}}</div>
+                            <ng-containe *ngIf="product.qty != 0">
+                            <div *ngIf="product.special_price == 0" class="font-weight-500 p-1 text-right">{{product.price}} {{'hrn' | translate}}/{{product.weight}}г </div>
+                            <div *ngIf="product.special_price != 0"class="font-weight-500 p-1 text-right">{{product.special_price}} {{'hrn' | translate}}/{{product.weight}}г </div>
+                            </ng-containe>
+                        </div>
+
+                        <div class="col pointer" (click)="goToProduct(product)" *ngIf="(lang == 'ru') && (product.weight_type == 1)"> 
+                            <div class="m-0 font-weight-300 h4">{{product.product.title_ru}}</div>
+                            <ng-containe *ngIf="product.qty != 0">
+                            <div *ngIf="product.special_price == 0" class="font-weight-500 p-1 text-right">{{product.price}} {{'hrn' | translate}}/{{product.weight}}кг </div>
+                            <div *ngIf="product.special_price != 0"class="font-weight-500 p-1 text-right">{{product.special_price}} {{'hrn' | translate}}/{{product.weight}}кг </div>
+                            </ng-containe>
+                        </div>
+                        <div class="col pointer" (click)="goToProduct(product)" *ngIf="(lang == 'ru') && (product.weight_type == 0)"> 
+                            <div class="m-0 font-weight-300 h4">{{product.product.title_ru}}</div>
+                            <ng-containe *ngIf="product.qty != 0">
+                            <div *ngIf="product.special_price == 0" class="font-weight-500 p-1 text-right">{{product.price}} {{'hrn' | translate}}/{{product.weight}}г </div>
+                            <div *ngIf="product.special_price != 0"class="font-weight-500 p-1 text-right">{{product.special_price}} {{'hrn' | translate}}/{{product.weight}}г </div>
+                            </ng-containe>
+                        </div>
+
+                        <div class="col pointer" (click)="goToProduct(product)" *ngIf="(lang == 'en') && (product.weight_type == 1)"> 
+                            <div class="m-0 font-weight-300 h4">{{product.product.title_eng}}</div>
+                            <ng-containe *ngIf="product.qty != 0">
+                            <div *ngIf="product.special_price == 0" class="font-weight-500 p-1 text-right">{{product.price}} {{'hrn' | translate}}/{{product.weight}}kg </div>
+                            <div *ngIf="product.special_price != 0"class="font-weight-500 p-1 text-right">{{product.special_price}} {{'hrn' | translate}}/{{product.weight}}kg </div>
+                            </ng-containe>
+                        </div>
+                        <div class="col pointer" (click)="goToProduct(product)" *ngIf="(lang == 'en') && (product.weight_type == 0)"> 
+                            <div class="m-0 font-weight-300 h4">{{product.product.title_eng}}</div>
+                            <ng-containe *ngIf="product.qty != 0">
+                            <div *ngIf="product.special_price == 0" class="font-weight-500 p-1 text-right">{{product.price}} {{'hrn' | translate}}/{{product.weight}}g </div>
+                            <div *ngIf="product.special_price != 0"class="font-weight-500 p-1 text-right">{{product.special_price}} {{'hrn' | translate}}/{{product.weight}}g </div>
+                            </ng-containe>
+                        </div>
+                        <div class="col p-0"> 
+                            <div *ngIf="product.qty == 0" class="row justify-content-center">
+                                <span class="text-danger noselect"> {{'Out of stock'}} </span>
+                            </div>
+                            <div *ngIf="product.qty != 0" class="row align-items-center pl-4 pr-4 pt-2 pb-1 text-center" >
+                                <div *ngIf="product.amount < 1" class="col trash-bin pointer p-0" (click)="decreaseCartItem(product)"><fa-icon [icon]="faTrash" class="h3 font-weight-light"></fa-icon></div>
+                                <div *ngIf="product.amount >= 1" class="col  trash pointer p-0" (click)="decreaseCartItem(product)"><fa-icon [icon]="faMinusCircle" class="h3 font-weight-light"></fa-icon></div>
+                                <div class="col counter h3 m-0 font-weight-400 p-0"><span class="noselect">{{product.amount}}</span></div>
+                                <div class="col divider pointer p-0" (click)="increaseCartItem(product)"><fa-icon [icon]="faPlusCircle" class="h3 font-weight-light"></fa-icon></div>
+                            </div>
+                        </div>
+                        <div class="col p-0 "> 
+                            <div *ngIf="product.qty == 0" class="row justify-content-center">
+                                <a (click)="replaceProductModal(product)" class="btn btn-sm btn-primary noselect p-2">{{'Replace' | translate}}</a>
+                            </div>
+                            <div *ngIf="product.qty != 0" class="p-3 row text-right h3 m-0 font-weight-300 noselect justify-content-center">
+                                {{ (product.special_price * product.amount).toFixed(2) }} {{'hrn' | translate}}
+                            </div>
+                            
+                        </div>
+                        <div class="col-auto p-0 pl-3 text-right"> 
+                            <div class="col trash-bin pointer" (click)="removeCartItem(product)"><fa-icon [icon]="faTrash" class="h2 font-weight-light"></fa-icon></div>
+                        </div>
+                </div>
+
+                <div *ngIf="commentView" >
+                    <div class="mb-2 pb-2 border-bottom form-group border-top mt-2 pt-2 ">
+                        <a class="pt-3 font-weight-500 a_link text-primary noselect" (click)="toggleCommentField()"> {{'Add comment to order' | translate}} </a>
+                        <textarea *ngIf="showCommentField" [(ngModel)]="comment" class="form-control" rows="3" placeholder="{{comment}}"></textarea>
+                      </div>
+                    <div class="row" *ngIf="showCommentField">
+                        <div class="col text-right"> <button [disabled]="!comment" (click)="toggleComment()" class="btn btn-sm btn-primary"> {{'Add comment' | translate}} </button></div>
+                    </div>
+                </div>
+
+                <div *ngIf="!commentView" >
+                    <div class="mb-2 pb-2 form-group border-top mt-2 pt-2 ">
+                        <a class="pt-3 font-weight-500 a_link text-primary" (click)="toggleComment()"> {{'Edit comment' | translate}}</a>
+                        <!-- <textarea [(ngModel)]="comment" class="form-control" rows="3" placeholder="comment"></textarea> -->
+                        <div class="container">
+                        <div class="row border rounded "> 
+                            <div class="col">
+                            {{comment}}
+                            </div>
+                            <button class="pionter m-2" mat-button *ngIf="comment" matSuffix mat-icon-button aria-label="Edit" (click)="toggleComment()">
+                                <fa-icon [icon]="faEdit" class=""></fa-icon>
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col text-right"> <button mat-button color="" class="outline-none bg-green text-white h1 text-uppercase m-0 font-weight-400"> Додати коментар </button></div>
+                    </div> -->
+                </div>
+
+                <div class="container pt-3 noselect">
+                    <div class="row pl-3 pr-3">
+                        <div class="col">
+                            <p class="h3 font-weight-300">{{'Products' | translate}}</p>
+                        </div>
+                        <div class="col">
+                            <p class="h3 font-weight-300 text-right">{{ productPrice | async }} {{'hrn' | translate}}</p>
+                        </div>
+                    </div>
+                    <div class="row pl-3 pr-3">
+                        <div class="col">
+                            <p class="h3 font-weight-300">{{'Delivery' | translate}}</p>
+                        </div>
+                        <div class="col">
+                            <p class="h3 font-weight-300 text-right">{{ totalDelivery | async }} {{'hrn' | translate}}</p>
+                        </div>
+                    </div>
+                    <div class="row pl-3 pr-3">
+                        <div class="col">
+                            <p class="h3 font-weight-300">{{'Weight' | translate}}</p>
+                        </div>
+                        <div class="col">
+                            <p class="h3 font-weight-300 text-right">{{ totalWeight | async }}</p>
+                        </div>
+                    </div>
+                    <div class="row p-3 border rounded align-items-center">
+                        <div class="col">
+                            <p class="h2 font-weight-400 m-0">{{'Total' | translate}}</p>
+                        </div>
+                        <div class="col">
+                            <p class="h2 font-weight-400 text-right m-0">{{ totalPrice | async }} {{'hrn' | translate}}</p>
+                        </div>
+                    </div>
+                    <div class="row p-3 align-items-center text-center">
+                        <div class="col">
+                            <button type="button" routerLink="/order" class="btn btn-primary text-uppercase w-100 ">{{'Create order' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-5 noselect">
+            <div *ngIf="productPrice.getValue() != 0">
+            <p class="p-3 m-0 h3 font-weight-300">{{'Cart price in other stores' | translate}}</p>
+            <div class="bg-white container border rounded similar">
+                <div *ngFor="let store of totals">
+                    <div (click)="selectStore(store.id)" *ngIf="store.value != 0" class="row align-items-center p-3 pointer border-bottom" >
+                        <div class="col-auto">
+                            <fa-icon *ngIf="store.active" [icon]="faDotCircle" class="h4 font-weight-300"></fa-icon>
+                            <fa-icon *ngIf="!store.active" [icon]="faCircle" class="h4 font-weight-300"></fa-icon>
+                        </div>
+                        <div class="col d-flex flex-column">
+                            <div class="row font-weight-500 mb-0 h3" *ngIf="lang == 'ua'">{{store.title_ua}}</div>
+                            <div class="row font-weight-500 mb-0 h3" *ngIf="lang == 'ru'">{{store.title_ru}}</div>
+                            <div class="row font-weight-500 mb-0 h3" *ngIf="lang == 'en'">{{store.title_eng}}</div>
+                            <div class="row font-weight-300 mb-0 h4 text-muted">{{store.address}}</div>
+                            <div class="pt-1 row font-weight-400 mb-0 text-danger h4" *ngIf="!store.allProducts" >{{'Not all products in stock' | translate}}</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="border rounded text-center pt-3 pb-3">
+                                <span class="h4"> {{store.value}} {{'hrn' | translate}} </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

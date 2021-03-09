@@ -1,0 +1,102 @@
+<div class="container pb-3">
+    <p class="h2 text-uppercase">
+        {{'Account setting' | translate}}
+    </p>
+</div>
+<div class="container">
+    <div class="border-bottom mb-3">
+        <p class="text-uppercase h2 font-weight-300"> {{'Personal data' | translate}}</p>
+    </div>
+    <form [formGroup]="profileForm" class="personal-form">
+        <div class="form-row align-items-center justify-content-center">
+            <label class="col-3" for="validationDefault01">{{'Name' | translate}}</label>
+            <input formControlName="name" type="text" class="col-6 rounded form-control" id="validationDefault01" placeholder="{{'Name' | translate}}" value="" required>
+        </div>
+        <div class="form-row align-items-center justify-content-center">
+            <label class="col-3" for="validationDefault02">{{'Surname' | translate}}</label>
+            <input formControlName="surname" type="text" class="col-6 rounded form-control" id="validationDefault02" placeholder="{{'Surname' | translate}}" value="" required>
+        </div>
+        <div class="form-row align-items-center justify-content-center">
+            <label class="col-3" for="validationDefault03">{{'Parent Name' | translate}}</label>
+            <input formControlName="parent_name" type="text" class="col-6 rounded form-control" id="validationDefault03" placeholder="{{'Parent Name' | translate}}" value="" required>
+        </div>
+
+        <div class="form-row align-items-center justify-content-center mt-2">
+            <div class="form-row align-items-center justify-content-center mt-2">
+                <button (click)="updateProfile()" class="btn btn-primary rounded" type="submit">{{'Confirm' | translate}}</button>
+            </div>
+            
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <div class="border-bottom mb-3">
+        <p class="text-uppercase h2 font-weight-300">{{'Login data' | translate}}</p>
+    </div>
+    <form [formGroup]="phoneForm" class="personal-form">
+        <div class="form-row align-items-center justify-content-center flex-column">
+            <label class="col-9" for="validationDefault01">{{'Phone for authorization' | translate}}</label>
+            <div class="col-9 d-flex align-items-center">
+                <input prefix="+38 " mask="(000) 000 00 00" formControlName="phone" type="text" class="col-9 rounded form-control" id="validationDefault04" placeholder="{{'Phone' | translate}}" value="" required>
+                <p class="col-3 text-primary pointer h3 font-weight-300" (click)="sendSms()"><u> {{'Change' | translate}} </u></p>
+            </div>
+            
+        </div>
+        <div class="form-row align-items-center justify-content-center flex-column">
+            <label class="col-9" for="validationDefault01">{{'Enter code from sms' | translate}}</label>
+            <div class="col-9 d-flex justify-content-between" style="gap: 2rem;">
+                <input type="text" formControlName="code_1" class="text-center col rounded form-control" id="validationDefault05" placeholder="0" value="" required>
+                <input type="text" formControlName="code_2" class="text-center col rounded form-control" id="validationDefault05" placeholder="0" value="" required>
+                <input type="text" formControlName="code_3" class="text-center col rounded form-control" id="validationDefault05" placeholder="0" value="" required>
+                <input type="text" formControlName="code_4" class="text-center col rounded form-control" id="validationDefault05" placeholder="0" value="" required>
+            </div>
+            
+        </div>
+
+        <div class="form-row align-items-center justify-content-center mt-2">
+                <button class="btn btn-primary rounded" type="submit" (click)="updatePhone()">{{'Save' | translate}}</button>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <div class="border-bottom mb-3">
+        <p class="text-uppercase h2 font-weight-300">{{'Optional data' | translate}}</p>
+    </div>
+    <form [formGroup]="dateForm" class="personal-form">
+        <div class="mb-2">
+            <div class="form-row align-items-center justify-content-center flex-column">
+                <label class="col-9" >{{'Birthday' | translate}}</label>
+                <div class="col-9 d-flex justify-content-between" style="gap: 2rem;">
+                    <input  formControlName="day" mask="00" type="text" class="col rounded form-control"  placeholder="{{'Day' | translate}}"  required>
+                    <input  formControlName="month" mask="00" type="text" class="col rounded form-control"  placeholder="{{'Month' | translate}}"  required>
+                    <input  formControlName="year" mask="0000" type="text" class="col rounded form-control"  placeholder="{{'Year' | translate}}"  required>
+                </div>
+            </div>
+            <div class="form-row align-items-center flex-column">
+                <div class="col-9 form-row align-items-center mt-2">
+                    <button (click)="updateDate()" class="btn btn-primary rounded" type="submit">{{'Save' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form [formGroup]="emailForm" class="personal-form">
+        <div class="mb-2">
+            <div class="form-row align-items-center justify-content-center flex-column">
+                <label class="col-9" for="validationDefault01">{{'Your email' | translate}}</label>
+                <div class="col-9 d-flex justify-content-between" style="gap: 2rem;">
+                    <input formControlName="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="email">
+                </div>
+            </div>
+            <div class="form-row align-items-center flex-column">
+                <div class="col-9 form-row align-items-center mt-2">
+                    <button (click)="updateEmail()" class="btn btn-primary rounded" type="submit">{{'Save' | translate}}</button>
+                </div>
+            </div>
+        </div>
+
+        
+    </form>
+</div>

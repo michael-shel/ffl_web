@@ -1,0 +1,119 @@
+<div>
+<div class="container">
+
+    <div class="row p-3">
+        <div class="col-7 left-banner pl-0 main-carousel" *ngIf="posters">
+            <owl-carousel-o [options]="customOptions" >
+
+                <ng-container *ngFor="let poster of posters">
+
+                  <ng-template carouselSlide [id]="'post-'+poster.id" >
+                    <img [src]="'https://foodforlife.com.ua/'+poster.photo.url" [alt]="poster.title" [title]="poster.title" style="height: 100%; object-fit: cover;">
+                    <p style="position: absolute;
+                    bottom: 30%;
+                    left: 5%;
+                    width: 50%;
+                    z-index: 10;
+                    line-height: 1;
+                    color: white;
+                    font-family: RussoOne;
+                    font-size: 50px;
+                    text-transform: uppercase;
+                    filter: drop-shadow(2px 4px 6px black);">
+                    {{poster.title}}
+                    </p>
+                  </ng-template>
+                </ng-container>
+
+              </owl-carousel-o>
+        </div>
+        <div class="col text-center border rounded p-0 bg-custom-gray">
+            <div class="">
+                <p class="size18 m-0 font-weight-500 p-3"> {{'Select store and address' | translate}} </p>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="d-flex w-100 p-0">
+                            <input (focus)="focusAddress()" [class.border-danger]="invalidAddress" [(ngModel)]="address" type="text" style="max-width: 100%;" [class.text-black]="address" class="border-custom-gray form-control text-center address-input" placeholder="{{'Street and house' | translate}}" value="" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pl-5 pr-5">
+                    <div class="col-4 justify-content-center align-items-center d-flex" *ngFor="let brand of brands" >
+                        <div class="w-100 pointer" (click)="selectBrand(brand)">
+                            <ng-container *ngIf="selectedBrand">
+                            <img class="brand-img" [class.gray]="brand.id != selectedBrand.id" src="{{url}}/storage/{{brand.icon.id}}/{{brand.icon.file_name}}">
+                            </ng-container>
+                            <ng-container *ngIf="!selectedBrand">
+                                <img class="brand-img gray" src="{{url}}/storage/{{brand.icon.id}}/{{brand.icon.file_name}}">
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="select" (click)="clickStore()" [class.border-danger]="invalidStore" class="select border-custom-gray bg-white">
+                                <input type="radio" name="list" value="not_changed" id="bg" checked />
+                                <input type="radio" name="list" value="not_changed" id="select">
+                                <label class="bg" for="bg"></label>
+                                <div class="items">
+                                    <ng-container *ngIf="selectedStore">
+                                        <ng-container  *ngFor="let store of stores">
+                                            <input [(ngModel)]="selectedStore" type="radio" name="list" [value]="store" id="list[{{store.id}}]">
+                                            <label for="list[{{store.id}}]" class="text-center w-100" [class.text-primary]="store.id == selectedStore.id" >{{store.title}} {{store.address}}</label>
+                                        </ng-container>
+                                    </ng-container>
+
+                                    <ng-container *ngIf="!selectedStore">
+                                        <ng-container  *ngFor="let store of stores">
+                                            <input [(ngModel)]="selectedStore" type="radio" name="list" [value]="store" id="list[{{store.id}}]">
+                                            <label for="list[{{store.id}}]" class="text-center w-100" >{{store.title}} {{store.address}}</label>
+                                        </ng-container>
+                                    </ng-container>
+                                    <ng-container *ngIf="stores.length == 0">
+                                        <input  type="radio" name="list" id="noneStore">
+                                        <label for="noneStore" class="text-center w-100" >{{'Stores not found' | translate}}</label>
+                                    </ng-container>
+                                  <span id="text" *ngIf="selectedStore" class="text-center size16 font-weight-500 text-black"> {{selectedStore.title}} </span>
+                                  <span id="text" *ngIf="selectedBrand && !selectedStore" class="text-center"> {{'Closest store' | translate}} {{selectedBrand.title}} </span>
+                                  <span id="text" *ngIf="!selectedBrand && !selectedStore" class="text-center"> {{'Choose store brand' | translate}} </span>
+
+                                </div>
+                            </label>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row pb-3 justify-content-center mt-1 mb-3">
+                    <div (click)="selectStore()" class="hover_button pointer col-6 border-catalog bg-yellow p-3 border-yellow">
+                        <a  class="select-store-button text-uppercase font-russo-one font-weight-100 size22" > {{'To shopping' | translate}} </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="row pt-5 pb-5">
+        <div class="col bg-light" style="height: 200px;"></div>
+    </div>
+</div>
+    <div class=" pt-5 pb-5">
+        <div class="col bg-light" style="height: 200px;">
+        </div>
+    </div>
+    <div class="container">
+        <div class="row pt-5 pb-5">
+            <div class="col bg-light" style="height: 200px;"></div>
+        </div>
+    </div>
+    <div class=" pt-5">
+        <div class="col bg-custom-secondary" style="height: 300px;">
+        </div>
+    </div>
+</div>

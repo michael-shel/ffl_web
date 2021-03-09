@@ -1,0 +1,102 @@
+<div class="container justify-content-between d-flex pb-3">
+    <p class="h2 text-uppercase">
+        {{'My addresses' | translate}}
+    </p>
+    <a class="btn btn-sm btn-primary" (click)="addAddressModal()">{{'Add address' | translate}} +</a>
+</div>
+
+
+<div class="" id="accordionExample">
+<div class=" container rounded p-0 bg-white mt-2 " *ngIf="addresses.length > 0">
+    <ng-container *ngFor="let address of addresses">
+    <div class="pointer mb-2"  >
+        
+      <div (click)="addressToggle(address)" class="border" [attr.id]="'heading'+address.id">
+        <div class=" container">
+          <div class="p-4 btn btn-link btn-block text-left" type="button" data-toggle="collapse" [attr.data-target]="'#collapse'+address.id" aria-expanded="true" [attr.aria-controls]="'collapse'+address.id">
+            <div class="row w-100">
+                <div class="col-6">
+                    <a class="h4 font-weight-600 noselect m-0 text-uppercase open-sans" >{{address.title}}</a>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex justify-content-end">
+                        <div class="">
+                            <a  *ngIf="address.isOpen"  ><fa-icon [icon]="faChevronUp" class="h4 font-weight-300"></fa-icon> </a>
+                            <a  *ngIf="!address.isOpen" ><fa-icon [icon]="faChevronDown" class="h4 font-weight-300"></fa-icon> </a>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div [attr.id]="'collapse'+address.id"  class="collapse " [attr.aria-labelledby]="'heading'+address.id" data-parent="#accordionExample">
+        <div class="container pt-3 border border-top-0">
+            <form [formGroup]="addressForm" class="personal-form">
+                <div class="form-row align-items-center justify-content-center">
+                    <label class="col-3" for="validationDefault01">{{'Street' | translate}}</label>
+                    <input formControlName="street" type="text" class="col-6 rounded form-control" id="validationDefault01" placeholder="{{'Street' | translate}}" value="" required>
+                </div>
+                <div class="form-row align-items-center justify-content-center">
+                    <label class="col-3" for="validationDefault02">{{'House number' | translate}}</label>
+                    <div class="col-6 d-flex p-0">
+                        <input formControlName="house" type="text" class="col-3 rounded form-control" id="validationDefault02" placeholder="{{'House number' | translate}}" value="" required>
+                    </div>
+                    
+                </div>
+                <div class="form-row align-items-center justify-content-center">
+                    <label class="col-3" for="validationDefault03">{{'Entrance' | translate}}</label>
+                    <div class="col-6 d-flex p-0">
+                        <input formControlName="entrance" type="text" class="col-3 rounded form-control" id="validationDefault03" placeholder="{{'Entrance' | translate}}" value="" >
+                    </div>
+                </div>
+                <div class="form-row align-items-center justify-content-center">
+                    <label class="col-3" for="validationDefault04">{{'Floor' | translate}}</label>
+                    <div class="col-6 d-flex p-0">
+                    <input formControlName="floor" type="text" class="col-3 rounded form-control" id="validationDefault04" placeholder="{{'Floor' | translate}}" value="" >
+                    </div>
+                </div>
+                <div class="form-row align-items-center justify-content-center">
+                    <label class="col-3" for="validationDefault05">{{'Apartment' | translate}}</label>
+                    <div class="col-6 d-flex p-0">
+                    <input formControlName="apartment" type="text" class="col-3 rounded form-control" id="validationDefault05" placeholder="{{'Apartment' | translate}}" value="" >
+                    </div>
+                </div>
+                <div class="form-row align-items-center justify-content-center">
+                    <label class="col-3" for="validationDefault06">{{'Intercom code' | translate}}</label>
+                    <div class="col-6 d-flex p-0">
+                    <input formControlName="intercom_code" type="text" class="col-3 rounded form-control" id="validationDefault06" placeholder="{{'Intercom code' | translate}}" value="" >
+                    </div>
+                </div>
+                <div class="form-row align-items-center justify-content-center">
+                  <div class="col-3 pl-4">
+                    <input (change)="changeMain(address.id)" [checked]="address.id == main_address" type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label pl-3 noselect text-nowrap" for="exampleCheck1">{{'Main delivery address' | translate}}</label>
+                  </div>
+                  <div class="col-6">
+                  </div>
+                </div>
+        
+                <div class="form-row align-items-center justify-content-center mt-1">
+                    <div class="form-row align-items-center justify-content-center mt-1">
+                        <button (click)="saveAddress()" class="btn btn-primary rounded" type="submit">{{'Save' | translate}}</button>
+                    </div>
+                </div>   
+                
+                <div class="form-row align-items-center justify-content-center">
+                    <div class="col-3 pl-4">
+                        <p class="text-primary" (click)="addressDelete()"> <u> - {{'Remove address' | translate}} </u></p>
+                    </div>
+                    <div class="col-6">
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+    </ng-container>
+</div>
+</div>

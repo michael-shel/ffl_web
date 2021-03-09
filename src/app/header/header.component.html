@@ -1,0 +1,236 @@
+
+<!-- <button (click)="getOrders()" style="display: none;">get orders</button> -->
+   
+<div class="page-wrapper">
+    <header class="header">
+        <div class="pt-2 pb-2">
+            <div class="container d-flex ">
+                    <div class="pl-0 col-12 col-lg-3 d-flex justify-content-between align-items-center">
+                            <a href="index.html" class="">
+                                <img src="../../assets/html/assets/images/img/logo-klik.svg" alt="Klicks Logo" width="150">
+                            </a>
+
+                            <div class="dropdown show pt-4">
+                                <a class="p-2 dropdown-toggle  size14" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{activeLang.title}}
+                                </a>
+                            
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a (click)="selectLang(lang)" *ngFor="let lang of langs" class="pointer dropdown-item h4 m-0 p-3 font-weight-light">{{lang.title}}</a>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="col-12 col-lg-4 d-flex pt-4 justify-content-center">
+                        
+                        
+                        <div class="dropdown show line-height-1">
+                            <p class="size15 position-absolute text-muted" style="margin-top: -16px;">{{'Any questions' | translate}}</p>
+                            <span class="size15">{{'Call us' | translate }}: </span> <span class="text-muted text-uppercase size20 "> +38 </span>
+                            <a class="dropdown-toggle" href="tel:activePhone" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="size20 text-uppercase font-weight-600">{{activePhone}}</span>
+                            </a>
+                        
+                            <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
+                            <a (click)="selectPhone(phone)" *ngFor="let phone of phones" class="dropdown-item h4 m-0 p-3 font-weight-300" href="tel:phone.value">+38 {{phone.value}}</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-5 d-flex pt-4 text-right justify-content-end">
+
+                            <div class="col-7 d-flex align-items-center justify-content-evenly dropdown show pl-3 pr-3">
+                                <a (click)="openStoreModal()" class="d-flex size13 pointer a_link text-uppercase d-flex align-items-center" >
+                                    <span class="overflow-dots" *ngIf="activeLang.value == 'ua' || !activeLang ">{{selectedStore.title_ua}} {{selectedStore.address}}</span>
+                                    <span class="overflow-dots" *ngIf="activeLang.value == 'ru'">{{selectedStore.title_ru}} {{selectedStore.address}}</span>
+                                    <span class="overflow-dots" *ngIf="activeLang.value == 'en'">{{selectedStore.title_eng}} {{selectedStore.address}}</span>
+
+                                </a>
+                                <span class="pb-3" >
+                                    <img  class="d-inline" style="max-width: none;" src="../../assets/html/assets/images/img/header_exact position.svg" alt="" width="">
+                                </span>
+                            </div>
+
+                            <div class="col-5 d-flex align-items-center justify-content-evenly dropdown show pl-3">
+                                <a (click)="openStoreModal()" class="size13 text-uppercase a_link pointer d-flex align-items-center"  >
+                                <span class="overflow-dots">
+                                    {{address}} 
+                                </span>
+                                </a>
+                                <span class="pb-3" >
+                                    <img class="d-inline" style="max-width: none;" src="../../assets/html/assets/images/img/location.svg" alt="" width="">
+                                </span>
+                            </div>
+
+                    </div>
+
+            </div><!-- End .container -->
+        </div><!-- End .header-middle -->
+
+        <div class="header-bottom sticky-header pt-2 pb-2">
+            <div class="container">
+               
+                <app-recursive-categories></app-recursive-categories>
+                <div>
+                <div class="header-search pr-3 pl-3">
+                    <a href="#" class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
+                    <form action="#" method="get">
+                        <div class="header-search-wrapper border-0 bg-primary-hidden" >
+                            <input (blur)="onBlur()" (focus)="onFocus()" type="search" autocomplete="off" (keyup)="searchTerm$.next($event.target.value)" class="size14 text-white form-control search_input_header" style="border-radius: 20px; margin-right: -0.5px;" name="q" id="q" placeholder="{{'Search' | translate}}..." required>
+
+                        
+
+                           
+                            <button style="position: absolute;
+                            border: 0;
+                            right: 0;
+                            padding: 0 20px 0 10px;"
+                             class="btn" type="submit"><i class="size20 font-weight-600 text-white icon-magnifier"></i></button>
+                        </div>
+                    </form>
+                    
+                </div>
+                <div [class.d-flex]="focus" *ngIf="selectedStore" [class.d-none]="blur" class="p-0 container results_block" 
+                style="position: absolute;
+                width: 450px;
+                flex-direction: column;
+                z-index: 999;
+                margin-left: 10px;
+                margin-top: 0;
+                background: white;
+                border: 1px solid #644da6;
+                border-top: none;
+                color: black;
+                font-weight: 500;">
+                <ng-container *ngIf="results_none">
+                    <ng-container *ngIf="input_len >= 3 && results && input_len != 0">
+                        <div class="row">
+                            <p>{{'Not found' | translate}}</p>
+                        </div>
+                    </ng-container>
+                </ng-container>
+                    <ng-container *ngIf="input_len < 3 && input_len != 0">
+                        <div class="row">
+                            <p>{{'Enter 3 symbols' | translate}}</p>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="results && input_len >= 3">
+                        <ng-container *ngFor="let result of results ; let i = index">
+                            <div routerLink="/product/{{result.id}}" class="outline-none pointer w-100 border-bottom align-items-center row pb-3 pt-3 search-item" *ngIf="i<11">
+                                <div routerLink="/product/{{result.id}}" class="col-auto outline-none">
+                                    <div style="background-image: url({{url}}/{{result.product.media[0].url}}); height: 50px;
+                                    width: 50px;
+                                    background-size: contain;
+                                    background-position: center; "></div>
+                                </div>
+                                <div routerLink="/product/{{result.id}}" class="col outline-none">
+                                    <div class="row">
+                                        <div class="col line-height-1">{{result.product.title}}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col line-height-1" style="font-weight: 300; font-style: italic;">{{'Store' | translate}}: {{result.store.title}} </div>
+                                    </div>
+                                </div>
+                                <div routerLink="/product/{{result.id}}" class="col-auto outline-none">{{result.special_price}} {{'hrn' | translate}}</div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+                
+                <!-- End .header-search -->
+                
+                <ul class="menu d-flex justify-content-end w-100 pr-3">
+                    <!-- <li>
+                        <a href="" class="rounded pt-3 pb-3 text-uppercase"><fa-icon [icon]="faCloudMeatball" class="text-white h3"></fa-icon> Соц.Проект</a>
+                    </li>
+                    <li>
+                        <a href="" class="rounded pt-3 pb-3 text-uppercase"><fa-icon [icon]="faUtensils" class="text-white h3"></fa-icon> Рецепти</a>
+                    </li> -->
+                    <li class="hover_button pointer" *ngIf="!user">
+                        <a (click)="openAuthModal()" class=" pt-3 pb-3 text-uppercase text-light font-weight-600 hover_button"><fa-icon [icon]="faUser" class="hover_icon"></fa-icon> {{'Login' | translate}}</a>
+                    </li>
+                    <li class="hover_button pointer" *ngIf="user">
+                        <a routerLink="/account"  class=" pt-3 pb-3 text-uppercase text-light font-weight-600 hover_button"><fa-icon [icon]="faUser" class="hover_icon"></fa-icon> {{'Profile' | translate}} </a>
+                    </li>
+                </ul>
+
+                <div class="m-0 dropdown cart-dropdown d-flex justify-content-center align-items-center ">
+                    
+                    <!-- <a routerLink="/" *ngIf="!selectedStore" class=" dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                        <span class="cart-count">{{ cartItemCount | async }}</span>
+                    </a> -->
+                    <ul class="menu">
+                        <li class="hover_button d-flex" *ngIf="selectedStore">
+                            
+                            <a routerLink="cart" class="d-flex pt-3 pb-3 text-uppercase text-light font-weight-600 ">
+                                <span class="icon icon-basket"></span>
+                                <span class="cart-badge">{{ cartItemCount | async }}</span> 
+                                <span class="pl-4 hover_span">{{'Cart' | translate}}</span>
+                                </a>
+                        </li>
+                        <li class="hover_button d-flex" *ngIf="!selectedStore">
+                            
+                            <a routerLink="/" class="d-flex pt-3 pb-3 text-uppercase text-light font-weight-600 ">
+                                <span class="icon icon-basket"></span>
+                                <span class="cart-badge">{{ cartItemCount | async }}</span> 
+                                <span class="pl-4 hover_span">{{'Cart' | translate}}</span>
+                                </a>
+                        </li>
+                        
+                    </ul>
+
+                    <div class="dropdown-menu" >
+                        <div class="dropdownmenu-wrapper rounded">
+                            <!-- <div class="dropdown-cart-products">
+                                <div class="product">
+                                    <div class="product-details">
+                                        <h4 class="product-title">
+                                            <a href="product.html">Woman Ring</a>
+                                        </h4>
+
+                                        <span class="cart-product-info">
+                                            <span class="cart-product-qty">1</span>
+                                            x $99.00
+                                        </span>
+                                    </div>
+
+                                    <figure class="product-image-container">
+                                        <a href="product.html" class="product-image">
+                                            <img src="../../assets/html/assets/images/products/product-1.jpg" alt="product">
+                                        </a>
+                                        <a href="#" class="btn-remove" title="Remove Product"><i class="icon-cancel"></i></a>
+                                    </figure>
+                                </div>
+                            </div> -->
+
+                            <div class="dropdown-cart-total m-0 font-weight-light">
+                                <span>{{'Order sum' | translate}}</span>
+                                <span class="cart-total-price">{{ productPrice | async }} {{'hrn' | translate}}</span>
+                            </div>
+                            <div class="dropdown-cart-total m-0 font-weight-light">
+                                <span>{{'Delivery' | translate}}</span>
+                                <span class="cart-total-price">{{ totalDelivery | async }} {{'hrn' | translate}}</span>
+                            </div>
+                            <div class="dropdown-cart-total m-0 font-weight-light">
+                                <span>{{'Weight' | translate}}</span>
+                                <span class="cart-total-price">{{ totalWeight | async }} {{'hrn' | translate}}</span>
+                            </div>
+                            <div class="dropdown-cart-total">
+                                <span>{{'Total' | translate}}</span>
+                                <span class="cart-total-price">{{ totalPrice | async }} {{'hrn' | translate}} </span>
+                            </div>
+
+                            <div class="" *ngIf="selectedStore">
+                                <button type="button" routerLink="cart" class="hover-main-button text-black border-yellow font-russo-one bg-custom-secondary btn btn-dark text-uppercase w-100 ">{{'To cart' | translate}}</button>
+                            </div>
+                            <div class="" *ngIf="!selectedStore">
+                                <button type="button" routerLink="/" class="hover-main-button text-black border-yellow font-russo-one bg-custom-secondary btn btn-dark text-uppercase w-100 ">{{'To cart' | translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>

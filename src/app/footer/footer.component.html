@@ -1,0 +1,106 @@
+<footer class="bg-custom-primary pb-5 pt-5">
+   <div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col ">
+                    <a routerLink='/' class="">
+                        <img src="../../assets/html/assets/images/img/klik_white.svg" alt="Klik Logo" width="100%" height="auto">
+                    </a>
+                </div>
+            </div>
+            <div class="row mb-1 pt-2">
+                <div class="col">
+                    <p class="m-0 text-nowrap text-uppercase font-russo-one size20 line-height-1 text-white">{{'Download mobile' | translate}}</p>
+                    <p class="text-uppercase font-russo-one size20 line-height-1 text-white">{{'App' | translate}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a routerLink='/' class="">
+                        <img src="../../assets/html/assets/images/img/google_play.png" alt="Play Store" width="100%" height="auto">
+                    </a>
+                </div>
+            </div>
+            <div class="row pt-1">
+                <div class="col">
+                    <a routerLink='/' class="">
+                        <img src="../../assets/html/assets/images/img/apple.png" alt="App Store" width="100%" height="auto">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col mt-3 text-nowrap">
+            <div class="row">
+                <div class="col">
+                    <p class="m-0 font-russo-one text-uppercase text-white size20">
+                        {{'Main' | translate}}
+                    </p>
+                </div>
+            </div>
+            <div class="row" *ngFor="let page of pages">
+                <div class="col pt-2 pb-2">
+                    <a routerLink="page/{{page.id}}" class="text-light size14"> {{page.term}} </a>
+                </div>
+            </div>
+        </div>
+        <div class="col mt-3 text-nowrap">
+            <div class="row">
+                <div class="col-auto">
+                    <p class="m-0 font-russo-one text-uppercase text-white size20">
+                        {{'Main' | translate}}
+                    </p>
+                </div>
+            </div>
+            <div class="row" *ngFor="let page of pages">
+                <div class="col-auto pt-2 pb-2">
+                    <a routerLink="page/{{page.id}}" class="text-light size14"> {{page.term}} </a>
+                </div>
+            </div>
+        </div>
+        <div class="col mt-3 text-nowrap">
+            <div class="row">
+                <div class="col">
+                    <p class="m-0 font-russo-one text-uppercase text-white size20">
+                        {{'Contacts' | translate}}
+                    </p>
+                </div>
+            </div>
+            <div class="row" *ngFor="let phone of phones">
+                <div class="col-auto pt-2 pb-2">
+                    <a href="tel:phone.value" class="font-russo-one text-light size20">+38 {{phone.value}}</a>
+                </div>
+            </div>
+            <div class="row" *ngFor="let email of emails">
+                <div class="col-auto pt-2 pb-2" >
+                    <a href="mailto:email.value" class="font-russo-one text-light size18">{{email.value}}</a>
+                </div>
+            </div>
+        </div>
+        <div class="col align-self-center text-nowrap">
+            <div class="row">
+                <div class="col">
+                    <p class="m-0 font-russo-one text-yellow size34">
+                        #klikmenow
+                    </p>
+                </div>
+            </div>
+            <div class="row text-center pl-3">
+                <div class="col-auto ">
+                    <a routerLink="/" class="social-icon" target="_blank"><i class="icon-facebook size36"></i></a>
+                </div>
+                <div class="col-auto">
+                    <a routerLink="/" class="social-icon" target="_blank"><i class="icon-instagram size36"></i></a>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col">
+                    <p class="text-light size14">
+                        {{'Our official pages' | translate}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+</footer>

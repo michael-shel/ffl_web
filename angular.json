@@ -24,7 +24,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/custom-theme.scss",
+              "src/styles.css",
+              "src/assets/fontawesome-free-5.15.0-web/css/all.min.css"
             ],
             "scripts": []
           },
@@ -119,6 +121,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "FFLL"
+    }
+  },
+  "defaultProject": "FFLL",
+  "cli": {
+    "analytics": false
+  }
 }

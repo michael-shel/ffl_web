@@ -1,0 +1,20 @@
+.sms_btn:hover{
+    border-color: #f7d007 !important;
+}
+.form-control:focus {
+    border-color: #f7d007 !important;
+    background-color: #fff;
+    color: black;
+    box-shadow: none;
+}
+.hover_button:hover{
+    color: #4c309c;
+}
+.sms-repeat{
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    left: 0;
+    color: #644da6;
+    margin: -25px 0;
+}

@@ -1,0 +1,133 @@
+<div class="container pb-3">
+    <p class="h2 text-uppercase">
+        {{'My orders' | translate}}
+    </p>
+</div>
+<div id="accordionExample">
+<div class="container border rounded p-0 bg-white mt-2" *ngFor="let order of orders">
+    <div (click)="orderToggle(order)" class="border-bottom" [attr.id]="'heading'+order.id">
+        <div class="p-3 container">
+          <div class="p-3 btn btn-link btn-block text-left" type="button" data-toggle="collapse" [attr.data-target]="'#collapse'+order.id" aria-expanded="true" [attr.aria-controls]="'collapse'+order.id">
+            <div class="row w-100">
+                <div class="col-6">
+                    <a class="h4 font-weight-600 noselect m-0 text-uppercase open-sans" >{{order.title}}</a>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex justify-content-end">
+                        <div class="">
+                            <a  *ngIf="order.isOpen"  ><fa-icon [icon]="faChevronUp" class="h4 font-weight-300"></fa-icon> </a>
+                            <a  *ngIf="!order.isOpen" ><fa-icon [icon]="faChevronDown" class="h4 font-weight-300"></fa-icon> </a>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [attr.id]="'collapse'+order.id"  class="collapse " [attr.aria-labelledby]="'heading'+order.id" data-parent="#accordionExample">
+        <div class="container ">
+            <div class="row align-items-center pt-2 pb-2" *ngFor="let product of order.orders_products_datas">
+                <div class="col-auto d-flex text-center justify-content-center" (click)="goToProduct()">
+                    <a  class="d-none d-sm-none d-md-block" style="background-image: url({{url}}{{product.media[0].url}});height:86px; width:86px; background-repeat: no-repeat !important;background-size: contain;background-position: center;"></a>    
+                </div>
+                <div class="col" (click)="goToProduct()"> 
+                    <div class="m-0 font-weight-300 h4">{{product.title}}</div>
+                    <!-- <div class="text-right font-weight-500 p-1">{{product.price}} грн </div> -->
+                </div>
+                <div class="col text-center"> 
+                    <!-- <div class="counter h3 m-0 font-weight-400 p-0"><span class="noselect">{{product.count}}</span></div> -->
+                </div>
+                <!-- <div class="col p-0 text-left h3 m-0 font-weight-300 noselect"> 
+                    {{ product.price * product.count }} грн
+                </div> -->
+            </div>
+        </div>
+        <div class="container pt-3 ">
+            <div class="row">
+                <div class="col">
+                    <a class="h4 font-weight-600 noselect m-0 text-uppercase open-sans">{{'Order comment' | translate}}</a>
+                </div>
+            </div>
+            <div class="row pl-3 pr-3" *ngIf="order.comment">
+                <div class="col">
+                    <p class="">{{order.comment}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="container pt-3 ">
+            <div class="row">
+                <div class="col">
+                    <a class="h4 font-weight-600 noselect m-0 text-uppercase open-sans">{{'Devilery address' | translate}}</a>
+                </div>
+            </div>
+            <div class="row pl-3 pr-3">
+                <div class="col">
+                    <p class="">
+                       
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="container pt-3 ">
+            <div class="row">
+                <div class="col">
+                    <a class="h4 font-weight-600 noselect m-0 text-uppercase open-sans">{{'Devilery date and time' | translate}}</a>
+                </div>
+            </div>
+            <div class="row pl-3 pr-3">
+                <div class="col">
+                    <p class="">{{order.delivery_date}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="container pt-3">
+            <div class="row">
+                <div class="col">
+                    <a class="h4 font-weight-600 noselect m-0 text-uppercase open-sans">{{'Payment method' | translate}}</a>
+                </div>
+            </div>
+            <div class="row pl-3 pr-3">
+                <div class="col">
+                    <p class="">{{'Cash' | translate}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="container pt-3 pb-5">
+            <div class="row ">
+                <div class="col">
+                    <p class="h3 font-weight-300">{{'Products' | translate}}</p>
+                </div>
+                <div class="col">
+                    <p class="h3 font-weight-300 ">{{order.product_price}} {{'hrn' | translate}}</p>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col">
+                    <p class="h3 font-weight-300">{{'Delivery' | translate}}</p>
+                </div>
+                <div class="col">
+                    <p class="h3 font-weight-300 ">{{order.product_weight}} {{'hrn' | translate}}</p>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col">
+                    <p class="h3 font-weight-300">{{'Weight' | translate}}</p>
+                </div>
+                <div class="col">
+                    <p class="h3 font-weight-300 ">{{order.product_weight}} {{'kg' | translate}}</p>
+                </div>
+            </div>
+            <div class="row  rounded align-items-center">
+                <div class="col">
+                    <p class="h2 font-weight-400 m-0">{{'Total' | translate}}</p>
+                </div>
+                <div class="col">
+                    <p class="h2 font-weight-400  m-0">{{order.total_price}} {{'hrn' | translate}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
